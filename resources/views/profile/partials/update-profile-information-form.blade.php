@@ -13,7 +13,7 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
 
@@ -24,10 +24,31 @@
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
         <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)"
-                required autofocus autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+            <x-input-label for="phone" :value="__('Phone')" />
+            <x-text-input id="phone" name="phone" type="tel" class="mt-1 block w-full" :value="old('phone', $user->phone)"
+                required autofocus autocomplete="phone" />
+            <x-input-error class="mt-2" :messages="$errors->get('phone')" />
+        </div>
+        <div>
+            <x-input-label for="address" :value="__('Address')" />
+            <x-text-area id="address" rows='2' name="address" class="mt-1 block w-full" :value="old('address', $user->address)"
+                required autofocus />
+            <x-input-error class="mt-2" :messages="$errors->get('address')" />
+        </div>
+
+        <div>
+            <x-input-label for="photo" :value="__('Current Photo')" />
+            @if ($user->photo)
+                <img src="{{ asset('storage/photos/' . $user->photo) }}" alt="Post Image"
+                    class="mt-1 w-32 h-32 object-contain">
+            @endif
+        </div>
+
+        <div>
+            <x-input-label for="photo" :value="__('photo')" />
+            <x-text-input id="photo" name="photo" type="file" class="mt-1 block w-full" :value="old('phone', $user->photo)"
+                autofocus />
+            <x-input-error class="mt-2" :messages="$errors->get('photo')" />
         </div>
 
         <div>
@@ -65,4 +86,5 @@
             @endif
         </div>
     </form>
+</section>
 </section>
