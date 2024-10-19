@@ -48,4 +48,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function getPhotoAttribute($value)
+    {
+        return $value ? asset('storage/photos/' . $value) : null;
+    }
 }
