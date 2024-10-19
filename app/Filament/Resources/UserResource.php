@@ -29,10 +29,6 @@ class UserResource extends Resource
                     ->email()
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('password')
-                    ->password()
-                    ->required()
-                    ->maxLength(255),
                 Forms\Components\TextInput::make('address')
                     ->maxLength(255),
                 Forms\Components\TextInput::make('phone')
@@ -57,9 +53,9 @@ class UserResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('phone')
                     ->searchable(),
-                    ImageColumn::make('photo')
-                    ->label('Photo')  // Optional: Custom label for the column
-                    ->circular()  // Optional: Makes the image circular
+                ImageColumn::make('photo')
+                    ->label('Photo') // Optional: Custom label for the column
+                    ->circular() // Optional: Makes the image circular
                     ->size(50),
             ])
             ->filters([
