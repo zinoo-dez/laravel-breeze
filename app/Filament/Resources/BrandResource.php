@@ -2,17 +2,17 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\CategoryResource\Pages;
-use App\Models\Category;
+use App\Filament\Resources\BrandResource\Pages;
+use App\Models\Brand;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class CategoryResource extends Resource
+class BrandResource extends Resource
 {
-    protected static ?string $model = Category::class;
+    protected static ?string $model = Brand::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -20,9 +20,11 @@ class CategoryResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
+
+                Forms\Components\TextInput::make('name'),
+                Forms\Components\TextInput::make('sorting'),
+                Forms\Components\Textarea::make('description'),
+                Forms\Components\Toggle::make('is_featured'),
             ]);
     }
 
@@ -30,7 +32,12 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
+
                 Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('sorting'),
+                Tables\Columns\TextColumn::make('description'),
+                Tables\Columns\IconColumn::make('is_featured')
+                    ->boolean(),
             ])
             ->filters([
                 //
@@ -55,9 +62,9 @@ class CategoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCategories::route('/'),
-            'create' => Pages\CreateCategory::route('/create'),
-            'edit' => Pages\EditCategory::route('/{record}/edit'),
+            'index' => Pages\ListBrands::route('/'),
+            'create' => Pages\CreateBrand::route('/create'),
+            'edit' => Pages\EditBrand::route('/{record}/edit'),
         ];
     }
 }
