@@ -51,7 +51,7 @@ class User extends Authenticatable
     }
     public function getPhotoAttribute($value)
     {
-        return $value ? asset('storage/photos/' . $value) : null;
+        return $value ? asset(path: 'storage/photos/' . $value) : null;
     }
 
     public function stores(): HasMany
