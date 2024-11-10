@@ -28,4 +28,7 @@ Route::group(['prefix' => 'brands'], function () {
     Route::delete('/{brand}', [BrandController::class, 'destroy'])->name('brands.destroy');
 });
 
+Route::get('/categories', function () {
+    return view('categories.index');
+})->name('categories.index');
 require __DIR__ . '/auth.php';
