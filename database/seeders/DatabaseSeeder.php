@@ -29,6 +29,8 @@ class DatabaseSeeder extends Seeder
             FaqCategorySeeder::class,
             AdvertismentSeeder::class,
             OrderSeeder::class,
+            NewsCategorySeeder::class,
+            NewsSeeder::class,
         ]);
     }
 }
