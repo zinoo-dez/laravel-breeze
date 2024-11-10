@@ -1,10 +1,7 @@
 <x-guest-layout>
     @include('layouts.carousel')
     <section class="w-[90%] mx-auto my-8">
-        <div class="mb-8">
-            <h2 class="text-2xl font-bold mb-4">Livewire Counter Demo</h2>
-            <livewire:counter />
-        </div>
+
 
         <h2 class="text-xl text-slate-800">Trending Categories</h2>
         <div class="flex items-center justify-between my-6">
