@@ -68,4 +68,12 @@ class User extends Authenticatable
         return $this->hasMany(News::class);
     }
 
+    public function shipping_address(){
+        return $this->belongsTo(ShippingAddress::class);
+    }
+
+    public function order_details():HasMany{
+        return $this->hasMany(OrderDetail::class);
+    }
+
 }

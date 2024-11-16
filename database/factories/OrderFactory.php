@@ -21,10 +21,10 @@ class OrderFactory extends Factory
     public function definition(): array
     {
         return [
-            'order_no'=>fake()->word,
+            'order_no' => fake()->unique()->randomNumber,
             'user_id' => User::factory(),
             'delivery_status'=>fake()->randomElement([DeliveryStatus::Delivery,DeliveryStatus::Pickup]),
-            'status'=>fake()->randomElement([OrderStatus::Pending,OrderStatus::Delivery,OrderStatus::Complete,OrderStatus::Cancel,OrderStatus::Mixed,OrderStatus::Shipping]),
+            'status'=>fake()->randomElement([OrderStatus::Pending,OrderStatus::Delivery,OrderStatus::Complete,OrderStatus::Cancel,OrderStatus::Missed,OrderStatus::Shipping]),
             'shipping_fee'=>fake()->numberBetween(100,300),
             'payment_method'=>fake()->randomElement([PaymentMethod::Cash,PaymentMethod::HirePurchase]),
             'total_price'=>fake()->numberBetween(400,800),

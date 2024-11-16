@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\OrderDetail;
 use App\Models\Store;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -29,5 +30,9 @@ class ProductFactory extends Factory
             'sorting' => fake()->numberBetween(1, 100),
             'description' => fake()->text(),
         ];
+    }
+
+    public function order_detail(){
+        return $this->belongsTo(OrderDetail::class);
     }
 }
