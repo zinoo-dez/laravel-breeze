@@ -1,8 +1,6 @@
-<x-guest-layout>
-    @include('layouts.carousel')
+<x-layouts.guest>
+    @include('components.layouts.carousel')
     <section class="w-[90%] mx-auto my-8">
-
-
         <h2 class="text-xl text-slate-800">Trending Categories</h2>
         <div class="flex items-center justify-between my-6">
             <div
@@ -49,4 +47,4 @@
             </div>
         </div>
     </section>
-</x-guest-layout>
+</x-layouts.guest>
