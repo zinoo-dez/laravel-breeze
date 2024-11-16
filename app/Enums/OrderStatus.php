@@ -7,5 +7,5 @@ enum OrderStatus:string{
 
     case Complete = 'complete';
     case Shipping = 'shipping';
-    case Mixed = 'mixed';
+    case Missed = 'missed';
 }

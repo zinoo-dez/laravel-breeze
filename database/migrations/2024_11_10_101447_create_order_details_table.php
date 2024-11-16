@@ -1,8 +1,6 @@
 <?php
 
-use App\Enums\DeliveryStatus;
 use App\Enums\OrderStatus;
-use App\Enums\PaymentMethod;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,16 +12,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('order_details', function (Blueprint $table) {
             $table->id();
-            $table->string('order_no')->unique();
-            $table->foreignId('user_id')->constrained()->nullable();
-            $table->enum('delivery_status', [DeliveryStatus::Delivery->value, DeliveryStatus::Pickup->value])->nullable();
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('order_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('product_id')->constrained();
+            $table->foreignId('shipping_address_id')->constrained()->nullable();
             $table->enum('status', [OrderStatus::Pending->value, OrderStatus::Delivery->value, OrderStatus::Cancel->value, OrderStatus::Complete->value, OrderStatus::Shipping->value, OrderStatus::Missed->value])->default(OrderStatus::Pending->value)->nullable();
-            $table->decimal('shipping_fee', 10, 2)->nullable();
-            $table->enum('payment_method', [PaymentMethod::Cash->value, PaymentMethod::HirePurchase->value])->nullable();
-            $table->decimal('total_price', 10, 2)->nullable();
-            $table->decimal('total_discount_amount', 10, 2)->nullable();
+            $table->integer('qty');
+            $table->decimal('price', 10, 2)->nullable();
+            $table->enum('discount_type', ['percentage', 'fixed'])->nullable();
+            $table->decimal('discount_value', 10, 2)->nullable();
+            $table->timestamp('replied_at')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('order_details');
     }
 };
