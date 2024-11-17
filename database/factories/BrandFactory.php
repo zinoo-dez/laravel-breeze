@@ -18,7 +18,6 @@ class BrandFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'sorting' => fake()->randomNumber(1),
             'description' => fake()->text(),
             'is_featured' => fake()->boolean(),
 

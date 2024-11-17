@@ -10,7 +10,7 @@
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet">
 
     <!-- Styles -->
     @livewireStyles
@@ -19,9 +19,10 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100">
-        @include('layouts.navigation')
+<body class="font-sans antialiased bg-gray-100">
+    <div class="min-h-screen">
+        <!-- Navigation -->
+        @include('components.layouts.navigation')
 
         <!-- Page Heading -->
         @isset($header)
@@ -33,12 +34,15 @@
         @endisset
 
         <!-- Page Content -->
-        <main>
+        <main class="py-8">
             {{ $slot }}
         </main>
     </div>
 
+    <!-- Livewire Scripts -->
     @livewireScripts
+
+    <!-- Additional Scripts -->
     @stack('scripts')
 </body>
 
