@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class News extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'is_featured',
         'user_id',
@@ -17,11 +18,13 @@ class News extends Model
         'status',
     ];
 
-    public function newscategory(){
-        return $this->belongsTo(NewsCategory::class);
+    public function newscategory()
+    {
+        return $this->belongsTo(NewsCategory::class, 'news_category_id');
     }
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 }

@@ -5,6 +5,7 @@ use App\Livewire\CategoryCrud;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\ProductCrud;
 use App\Livewire\BrandCrud;
+use App\Livewire\NewsCrud;
 
 Route::get('/', function () {
     return view('welcome');
@@ -23,4 +24,5 @@ Route::middleware('auth')->group(function () {
 Route::get('/categories', CategoryCrud::class)->name('categories');
 Route::get('/brands', BrandCrud::class)->name('brands');
 Route::get('/products', ProductCrud::class)->name('products');
+Route::get('/news', NewsCrud::class)->name('news');
 require __DIR__ . '/auth.php';
