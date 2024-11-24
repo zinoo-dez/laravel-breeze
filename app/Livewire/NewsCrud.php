@@ -19,6 +19,7 @@ class NewsCrud extends Component
     public $news_category_id;
     public $status;
     public $news_id;
+    public $user_id;
     public $isOpen = false;
 
     public function render()
@@ -54,6 +55,7 @@ class NewsCrud extends Component
         $this->news_category_id = '';
         $this->status = ActiveinactiveType::Inactive->value;
         $this->news_id = '';
+        $this->user_id = '';
     }
 
     public function store()
@@ -63,12 +65,8 @@ class NewsCrud extends Component
             'content' => 'nullable',
             'news_category_id' => 'required',
             'status' => 'required',
+            'user_id' => 'required',
         ]);
-
-        if (!auth()->check()) {
-            session()->flash('error', 'You must be logged in to perform this action.');
-            return;
-        }
 
         News::updateOrCreate(['id' => $this->news_id], [
             'title' => $this->title,
@@ -76,7 +74,7 @@ class NewsCrud extends Component
             'is_featured' => $this->is_featured,
             'news_category_id' => $this->news_category_id,
             'status' => $this->status,
-            'user_id' => auth()->id(),
+            'user_id' => $this->user_id,
         ]);
 
         session()->flash('message', $this->news_id ? 'News updated.' : 'News created.');
@@ -93,6 +91,7 @@ class NewsCrud extends Component
         $this->is_featured = $news->is_featured;
         $this->news_category_id = $news->news_category_id;
         $this->status = $news->status;
+        $this->user_id = $news->user_id;
 
         $this->openModal();
     }

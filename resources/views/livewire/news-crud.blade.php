@@ -33,7 +33,7 @@
                                         {{ isset($news_id) ? 'Edit News' : 'Create News' }}
                                     </h3>
                                     <div class="mt-2">
-                                        <form>
+                                        <form wire:submit.prevent="store">
                                             <div class="mb-4">
                                                 <label for="user_id" class="block text-gray-700 text-sm font-bold mb-2">User:<span class="text-red-500">*</span></label>
                                                 <select wire:model.defer="user_id" id="user_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
@@ -86,19 +86,20 @@
                                                     id="is_featured" wire:model.defer="is_featured">
                                                 @error('is_featured') <span class="text-red-500">{{ $message }}</span> @enderror
                                             </div>
+
+                                            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                                                <button type="submit"
+                                                    class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">
+                                                    Save
+                                                </button>
+                                                <button type="button" wire:click="closeModal()"
+                                                    class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                                                    Cancel
+                                                </button>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                                <button wire:click.prevent="store()"
-                                    class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">
-                                    Save
-                                </button>
-                                <button wire:click="closeModal()"
-                                    class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
-                                    Cancel
-                                </button>
                             </div>
                         </div>
                     </div>
